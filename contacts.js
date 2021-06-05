@@ -34,7 +34,9 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   try {
     const list = await fs.readFile(contactsPath);
-    const filteredList = JSON.parse(list).filter((el) => el.id !== contactId);
+    const filteredList = JSON.parse(list).filter(
+      (el) => el.id.toString() !== contactId
+    );
 
     const updateList = JSON.stringify(filteredList);
     await fs.writeFile(contactsPath, updateList);
