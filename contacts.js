@@ -7,10 +7,7 @@ const contactsPath = path.join("db", "contacts.json");
 async function listContacts() {
   try {
     const list = await fs.readFile(contactsPath);
-    const resultList = list.toString();
-
-    console.table(JSON.parse(list));
-    return resultList;
+    return console.table(JSON.parse(list));;
   } catch (error) {
     console.log(error.message);
   }
@@ -23,9 +20,7 @@ async function getContactById(contactId) {
       (el) => el.id.toString() === contactId
     );
 
-    console.table(contactById);
-
-    return contactById;
+    return console.table(contactById);
   } catch (error) {
     console.log(error.message);
   }
@@ -42,8 +37,7 @@ async function removeContact(contactId) {
     await fs.writeFile(contactsPath, updateList);
 
     console.log("Contact successful removed! Update list:");
-    console.table(JSON.parse(updateList));
-    return updateList;
+    return console.table(JSON.parse(updateList));
   } catch (error) {
     console.log(error.message);
   }
@@ -65,8 +59,7 @@ async function addContact(name, email, phone) {
     await fs.writeFile(contactsPath, JSON.stringify(newList));
 
     console.log("Contact successful added:");
-    console.table(newContact);
-    return newContact;
+    return console.table(newContact);
   } catch (error) {
     console.log(error.message);
   }
